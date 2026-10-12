@@ -1,11 +1,467 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <title>나의 개인 홈페이지</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gaonlog | 개발, 기술, 그리고 기록의 공간</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts & Pretendard Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.4);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(156, 163, 175, 0.7);
+        }
+    </style>
 </head>
-<body>
-    <h1>안녕하세요! 제 개인 홈페이지에 오신 것을 환영합니다.</h1>
-    <p>GitHub Pages를 이용해 무료로 만든 웹사이트입니다.</p>
+<body class="bg-slate-50 text-slate-900 dark:bg-neutral-950 dark:text-neutral-100 font-sans antialiased selection:bg-neutral-900 selection:text-white dark:selection:bg-neutral-100 dark:selection:text-neutral-900 transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-slate-50/80 dark:bg-neutral-950/80 backdrop-blur-md border-b border-slate-200/80 dark:border-neutral-800/80 transition-colors duration-300">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="font-mono font-bold text-xl tracking-tight flex items-center gap-2 group">
+                <span class="w-3 h-3 rounded-full bg-emerald-500 group-hover:scale-125 transition-transform duration-300"></span>
+                <span>gaonlog</span>
+                <span class="text-xs px-1.5 py-0.5 rounded bg-slate-200 dark:bg-neutral-800 text-slate-600 dark:text-neutral-400 font-normal">dev</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-neutral-400">
+                <a href="#about" class="hover:text-slate-900 dark:hover:text-neutral-100 transition-colors">소개</a>
+                <a href="#posts" class="hover:text-slate-900 dark:hover:text-neutral-100 transition-colors">최근 글</a>
+                <a href="#projects" class="hover:text-slate-900 dark:hover:text-neutral-100 transition-colors">프로젝트</a>
+                <a href="#contact" class="hover:text-slate-900 dark:hover:text-neutral-100 transition-colors">연락처</a>
+            </nav>
+
+            <!-- Actions & Mobile Menu Button -->
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle" aria-label="테마 전환" class="w-9 h-9 rounded-xl flex items-center justify-center border border-slate-200 dark:border-neutral-800 text-slate-600 dark:text-neutral-400 hover:bg-slate-100 dark:hover:bg-neutral-900 transition-all">
+                    <i class="fa-solid fa-moon dark:hidden text-sm"></i>
+                    <i class="fa-solid fa-sun hidden dark:block text-sm"></i>
+                </button>
+                <a href="https://github.com/gaonlog" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 px-4 py-2 rounded-xl hover:opacity-90 transition-opacity">
+                    <i class="fa-brands fa-github text-sm"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="pt-32 pb-16 md:pt-44 md:pb-24 px-6 max-w-5xl mx-auto">
+            <div class="space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                    <span>geonlog.github.io 준비 완료</span>
+                </div>
+                
+                <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.15]">
+                    기술과 일상의 기록이 머무는 <br class="hidden sm:block">
+                    개인 웹로그, <span class="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 bg-clip-text text-transparent">gaonlog</span>
+                </h1>
+                
+                <p class="text-base sm:text-lg text-slate-600 dark:text-neutral-400 max-w-2xl leading-relaxed">
+                    안녕하세요! 웹 개발, 소프트웨어 아키텍처, 그리고 탐구한 기술 지식을 자유롭게 정리하는 개인 블로그이자 개발 공간입니다.
+                </p>
+
+                <div class="flex flex-wrap items-center gap-4 pt-2">
+                    <a href="#posts" class="inline-flex items-center gap-2 bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 px-6 py-3 rounded-xl font-medium text-sm hover:opacity-90 transition-all shadow-sm">
+                        블로그 글 읽기 <i class="fa-solid fa-arrow-down text-xs"></i>
+                    </a>
+                    <a href="https://github.com/gaonlog" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 px-6 py-3 rounded-xl font-medium text-sm hover:bg-slate-100 dark:hover:bg-neutral-800/80 transition-all">
+                        <i class="fa-brands fa-github"></i> GitHub 방문
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16 border-t border-slate-200/80 dark:border-neutral-800/80 bg-slate-100/40 dark:bg-neutral-900/20">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-2">
+                    <i class="fa-solid fa-user-gear"></i> About Me
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-8">소개 및 관심 기술</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                    <!-- Bio Card -->
+                    <div class="md:col-span-2 bg-white dark:bg-neutral-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-neutral-800 space-y-4">
+                        <p class="text-slate-700 dark:text-neutral-300 leading-relaxed">
+                            <strong class="text-slate-900 dark:text-white font-semibold">gaonlog</strong>는 더 나은 소프트웨어 개발을 위해 고민한 경험과 학습한 내용을 체계적으로 기록하기 위한 블로그입니다.
+                        </p>
+                        <p class="text-slate-600 dark:text-neutral-400 text-sm leading-relaxed">
+                            깔끔한 사용자 경험(UX)과 안정적인 백엔드 시스템 설계에 깊은 관심이 있습니다. 새로운 기술 트렌드를 빠르게 습득하고 프로젝트에 적용하며 배운 점들을 문서화하는 것을 즐깁니다.
+                        </p>
+                        <div class="pt-4 flex flex-wrap gap-2 text-xs">
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-neutral-800 font-mono text-slate-700 dark:text-neutral-300">#WebDevelopment</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-neutral-800 font-mono text-slate-700 dark:text-neutral-300">#Frontend</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-neutral-800 font-mono text-slate-700 dark:text-neutral-300">#Backend</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-neutral-800 font-mono text-slate-700 dark:text-neutral-300">#OpenSource</span>
+                        </div>
+                    </div>
+
+                    <!-- Tech Stack Box -->
+                    <div class="bg-white dark:bg-neutral-900 p-6 rounded-2xl border border-slate-200 dark:border-neutral-800 space-y-4">
+                        <h3 class="font-bold text-sm text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-code text-emerald-500"></i> Core Tech Stack
+                        </h3>
+                        <div class="space-y-3 text-xs font-mono">
+                            <div>
+                                <span class="text-slate-500 dark:text-neutral-500 block mb-1">Languages</span>
+                                <span class="text-slate-800 dark:text-neutral-200">TypeScript, JavaScript, Python, HTML/CSS</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-500 dark:text-neutral-500 block mb-1">Frameworks & Tools</span>
+                                <span class="text-slate-800 dark:text-neutral-200">React, Next.js, TailwindCSS, Node.js, Git</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Posts Section -->
+        <section id="posts" class="py-20 border-t border-slate-200/80 dark:border-neutral-800/80">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                    <div>
+                        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-2">
+                            <i class="fa-solid fa-newspaper"></i> Articles
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">최근 포스트</h2>
+                    </div>
+
+                    <!-- Filter Buttons -->
+                    <div class="flex flex-wrap items-center gap-2" id="filter-buttons">
+                        <button data-filter="all" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-medium bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 transition-all">전체</button>
+                        <button data-filter="dev" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-200/70 dark:bg-neutral-800 text-slate-700 dark:text-neutral-300 hover:bg-slate-300 dark:hover:bg-neutral-700 transition-all">개발</button>
+                        <button data-filter="daily" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-200/70 dark:bg-neutral-800 text-slate-700 dark:text-neutral-300 hover:bg-slate-300 dark:hover:bg-neutral-700 transition-all">일상</button>
+                        <button data-filter="review" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-200/70 dark:bg-neutral-800 text-slate-700 dark:text-neutral-300 hover:bg-slate-300 dark:hover:bg-neutral-700 transition-all">회고</button>
+                    </div>
+                </div>
+
+                <!-- Post Cards Container -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="post-grid">
+                    <!-- Post Card 1 -->
+                    <article data-category="dev" class="post-card group bg-white dark:bg-neutral-900/60 rounded-2xl p-6 border border-slate-200 dark:border-neutral-800 hover:border-slate-400 dark:hover:border-neutral-600 transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-neutral-400 mb-4">
+                                <span>2026.10.12</span>
+                                <span class="px-2.5 py-1 rounded-md bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 font-semibold">개발</span>
+                            </div>
+                            <h3 class="text-lg font-bold group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors mb-2 leading-snug">
+                                GitHub Pages와 Tailwind CSS로 나만의 블로그 구축하기
+                            </h3>
+                            <p class="text-sm text-slate-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
+                                정적 웹사이트 호스팅 서비스인 GitHub Pages를 활용하여 빠르게 개성 있는 개발 블로그를 론칭하는 전체 과정을 공유합니다.
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-slate-100 dark:border-neutral-800/80 flex items-center justify-between text-xs font-medium">
+                            <span class="text-slate-400 dark:text-neutral-500">읽는 시간 5분</span>
+                            <span class="text-slate-900 dark:text-white group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 font-semibold">
+                                읽기 <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- Post Card 2 -->
+                    <article data-category="dev" class="post-card group bg-white dark:bg-neutral-900/60 rounded-2xl p-6 border border-slate-200 dark:border-neutral-800 hover:border-slate-400 dark:hover:border-neutral-600 transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-neutral-400 mb-4">
+                                <span>2026.10.05</span>
+                                <span class="px-2.5 py-1 rounded-md bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 font-semibold">개발</span>
+                            </div>
+                            <h3 class="text-lg font-bold group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors mb-2 leading-snug">
+                                웹 성능 최적화: 번들 사이즈 감소와 LCP 향상 기법
+                            </h3>
+                            <p class="text-sm text-slate-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
+                                반응 속도가 빠른 웹 애플리케이션을 제작하기 위한 이미지 최적화, 코드 스플리팅, 크리티컬 CSS 처리 방법을 정리해봅니다.
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-slate-100 dark:border-neutral-800/80 flex items-center justify-between text-xs font-medium">
+                            <span class="text-slate-400 dark:text-neutral-500">읽는 시간 7분</span>
+                            <span class="text-slate-900 dark:text-white group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 font-semibold">
+                                읽기 <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- Post Card 3 -->
+                    <article data-category="review" class="post-card group bg-white dark:bg-neutral-900/60 rounded-2xl p-6 border border-slate-200 dark:border-neutral-800 hover:border-slate-400 dark:hover:border-neutral-600 transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-neutral-400 mb-4">
+                                <span>2026.09.28</span>
+                                <span class="px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 font-semibold">회고</span>
+                            </div>
+                            <h3 class="text-lg font-bold group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors mb-2 leading-snug">
+                                꾸준한 기록이 만들어낸 성장: 상반기 개발 회고
+                            </h3>
+                            <p class="text-sm text-slate-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
+                                올 상반기 동안 진행했던 여러 사이드 프로젝트 및 학습 내용들을 돌아보고 잘한 점과 개선할 점을 짚어봅니다.
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-slate-100 dark:border-neutral-800/80 flex items-center justify-between text-xs font-medium">
+                            <span class="text-slate-400 dark:text-neutral-500">읽는 시간 4분</span>
+                            <span class="text-slate-900 dark:text-white group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 font-semibold">
+                                읽기 <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- Post Card 4 -->
+                    <article data-category="daily" class="post-card group bg-white dark:bg-neutral-900/60 rounded-2xl p-6 border border-slate-200 dark:border-neutral-800 hover:border-slate-400 dark:hover:border-neutral-600 transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-neutral-400 mb-4">
+                                <span>2026.09.15</span>
+                                <span class="px-2.5 py-1 rounded-md bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 font-semibold">일상</span>
+                            </div>
+                            <h3 class="text-lg font-bold group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors mb-2 leading-snug">
+                                나만의 집중력을 높이는 워크스페이스 세팅
+                            </h3>
+                            <p class="text-sm text-slate-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
+                                장시간 모니터 앞에 앉아있는 개발자를 위한 데스크 셋업, 자동화 툴, 피로도를 낮추는 기기 추천 일상기.
+                            </p>
+                        </div>
+                        <div class="pt-6 mt-6 border-t border-slate-100 dark:border-neutral-800/80 flex items-center justify-between text-xs font-medium">
+                            <span class="text-slate-400 dark:text-neutral-500">읽는 시간 3분</span>
+                            <span class="text-slate-900 dark:text-white group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 font-semibold">
+                                읽기 <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects Section -->
+        <section id="projects" class="py-20 border-t border-slate-200/80 dark:border-neutral-800/80 bg-slate-100/40 dark:bg-neutral-900/20">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+                    <div>
+                        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-2">
+                            <i class="fa-solid fa-cubes"></i> Showcase
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">주요 프로젝트</h2>
+                    </div>
+                    <a href="https://github.com/gaonlog" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-slate-600 dark:text-neutral-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1 group">
+                        GitHub 전체보기 <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Project 1 -->
+                    <div class="bg-white dark:bg-neutral-900 rounded-2xl p-6 border border-slate-200 dark:border-neutral-800 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-lg">
+                                    G
+                                </div>
+                                <a href="https://github.com/gaonlog" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-800 dark:hover:text-white text-lg">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-white">gaonlog Starter Kit</h3>
+                            <p class="text-xs text-slate-600 dark:text-neutral-400 mb-4 leading-relaxed">
+                                GitHub Pages 기반으로 빠르게 개설 가능한 반응형 미니멀 블로그 템플릿입니다.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-neutral-400">HTML5</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-neutral-400">TailwindCSS</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-neutral-400">JavaScript</span>
+                            </div>
+                            <a href="#" class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:underline">
+                                데모 확인 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="bg-white dark:bg-neutral-900 rounded-2xl p-6 border border-slate-200 dark:border-neutral-800 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-lg">
+                                    A
+                                </div>
+                                <a href="https://github.com/gaonlog" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-800 dark:hover:text-white text-lg">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-white">Aura Dev Helper</h3>
+                            <p class="text-xs text-slate-600 dark:text-neutral-400 mb-4 leading-relaxed">
+                                일상적인 개발 작업에서 필요한 포맷터 및 파서 기능 모음 웹 유틸리티 앱.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-neutral-400">React</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-neutral-400">TypeScript</span>
+                            </div>
+                            <a href="#" class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:underline">
+                                데모 확인 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="bg-white dark:bg-neutral-900 rounded-2xl p-6 border border-slate-200 dark:border-neutral-800 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center font-bold text-lg">
+                                    M
+                                </div>
+                                <a href="https://github.com/gaonlog" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-800 dark:hover:text-white text-lg">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-white">Markdown Exporter</h3>
+                            <p class="text-xs text-slate-600 dark:text-neutral-400 mb-4 leading-relaxed">
+                                작성한 마크다운 문서를 깔끔한 PDF 및 HTML 파일로 즉각 전환해 주는 도구입니다.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-neutral-400">Node.js</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-neutral-800 text-slate-600 dark:text-neutral-400">CLI</span>
+                            </div>
+                            <a href="#" class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:underline">
+                                데모 확인 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 border-t border-slate-200/80 dark:border-neutral-800/80">
+            <div class="max-w-5xl mx-auto px-6 text-center">
+                <div class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-2">
+                    <i class="fa-regular fa-paper-plane"></i> Contact
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">언제든 연락주세요!</h2>
+                <p class="text-slate-600 dark:text-neutral-400 max-w-lg mx-auto mb-8 text-sm leading-relaxed">
+                    프로젝트 제안, 기술 질문, 혹은 단순한 인사의 메시지 모두 환영합니다.
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-4">
+                    <a href="mailto:contact@gaonlog.com" class="inline-flex items-center gap-2 bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 px-8 py-3.5 rounded-xl font-medium text-sm hover:opacity-90 transition-all shadow-sm">
+                        <i class="fa-regular fa-envelope"></i> 이메일 보내기
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-slate-200/80 dark:border-neutral-800/80 bg-slate-100/60 dark:bg-neutral-950">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2 font-mono text-sm font-bold">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                <span>gaonlog</span>
+            </div>
+            
+            <p class="text-xs text-slate-500 dark:text-neutral-500 font-mono">
+                &copy; 2026 gaonlog. All rights reserved.
+            </p>
+
+            <div class="flex items-center gap-5 text-slate-500 dark:text-neutral-400 text-base">
+                <a href="https://github.com/gaonlog" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="hover:text-slate-900 dark:hover:text-white transition-colors">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="mailto:contact@gaonlog.com" aria-label="Email" class="hover:text-slate-900 dark:hover:text-white transition-colors">
+                    <i class="fa-regular fa-envelope"></i>
+                </a>
+                <a href="#" aria-label="RSS Feed" class="hover:text-slate-900 dark:hover:text-white transition-colors">
+                    <i class="fa-solid fa-rss"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // 1. Dark/Light Theme Switching Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        
+        function applyTheme() {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+
+        // Apply immediately
+        applyTheme();
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        });
+
+        // 2. Dynamic Post Filtering Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const postCards = document.querySelectorAll('.post-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+
+                // Update Button Active States
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-neutral-900', 'text-white', 'dark:bg-neutral-100', 'dark:text-neutral-900');
+                    b.classList.add('bg-slate-200/70', 'dark:bg-neutral-800', 'text-slate-700', 'dark:text-neutral-300');
+                });
+                btn.classList.remove('bg-slate-200/70', 'dark:bg-neutral-800', 'text-slate-700', 'dark:text-neutral-300');
+                btn.classList.add('bg-neutral-900', 'text-white', 'dark:bg-neutral-100', 'dark:text-neutral-900');
+
+                // Filter Cards
+                postCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
